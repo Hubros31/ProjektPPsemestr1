@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "database.h"
+#include "menu.h"
 
 int main()
 {
-    printf("Hello world!\n");
+    Lista *baza_danych=NULL;
+    dzialanie_na_menu(&baza_danych);
+
     return 0;
 }
+
