@@ -159,10 +159,11 @@ void dodawanie_postaci(Lista **headd)
     dodaj->next=*headd;
     *headd=dodaj;
     printf("\nPostac dodana pomyslnie!\n");
+    printf("--------------------------------\n\n");
 }
 void wyswietlanie_calosci(Lista *headd)
 {
-    if (headd == NULL)
+    if (headd==NULL)
     {
         printf("\nPusta baza danych!\n\n");
         return;
@@ -191,7 +192,7 @@ void edycja_postaci(Lista *headd, char *username)
 
     if (flaga==0)
     {
-        printf("\nNie znaleziono postaci o podanym pseudonimie!\n");
+        printf("\nNie znaleziono postaci o podanym pseudonimie!\n\n");
         return;
     }
     while(1)
@@ -217,7 +218,7 @@ void edycja_postaci(Lista *headd, char *username)
         {
             if(wybor==0)
             {
-                printf("Edycje anulowano pomyslnie!.\n");
+                printf("Edycje anulowano pomyslnie!.\n\n");
                 break;
             }
             if(wybor==1)
@@ -227,7 +228,7 @@ void edycja_postaci(Lista *headd, char *username)
                 if(scanf("%d",&nowa_rola)==1 && nowa_rola>=0 && nowa_rola<=3)
                 {
                     wyszukaj->dane.rola=(Rola)nowa_rola;
-                    printf("Edycje roli zakonczono pomyslnie!\n");
+                    printf("Edycje roli zakonczono pomyslnie!\n\n");
                 }
                 else
                 {
@@ -239,7 +240,7 @@ void edycja_postaci(Lista *headd, char *username)
             {
                 printf("Nowa moc: ");
                 scanf(" %99[^\n]",wyszukaj->dane.moc);
-                printf("Edycje mocy zakonczono pomyslnie!\n");
+                printf("Edycje mocy zakonczono pomyslnie!\n\n");
                 break;
             }
             if(wybor==3)
@@ -250,11 +251,11 @@ void edycja_postaci(Lista *headd, char *username)
                 if (nowy_poziom>=0 && nowy_poziom<=10)
                 {
                     wyszukaj->dane.poziom_zagrozenia=nowy_poziom;
-                    printf("Edycje poziomu zagrozenia zakonczono pomyslnie!\n");
+                    printf("Edycje poziomu zagrozenia zakonczono pomyslnie!\n\n");
                 }
                 else
                 {
-                    printf("Podaj wartosc z zakresu od 0 do 10! Edycja niewprowadzona!\n");
+                    printf("Podaj wartosc z zakresu od 0 do 10! Edycja niewprowadzona!\n\n");
                 }
                 break;
             }
@@ -262,7 +263,7 @@ void edycja_postaci(Lista *headd, char *username)
             {
                 printf("Nowa dzielnica: ");
                 scanf(" %149[^\n]",wyszukaj->dane.dzielnica_dzialania);
-                printf("Edycje dzielnicy zakonczono pomyslnie!\n");
+                printf("Edycje dzielnicy zakonczono pomyslnie!\n\n");
                 break;
             }
             if(wybor==5)
@@ -273,11 +274,11 @@ void edycja_postaci(Lista *headd, char *username)
                 if (nowy_status>=0 && nowy_status<=4)
                 {
                     wyszukaj->dane.status=(Status)nowy_status;
-                    printf("Edycje statusu zakonczono pomyslnie!\n");
+                    printf("Edycje statusu zakonczono pomyslnie!\n\n");
                 }
                 else
                 {
-                    printf("Podaj wartosc z zakresu od 0 do 4! Edycja niewprowadzona!\n");
+                    printf("Podaj wartosc z zakresu od 0 do 4! Edycja niewprowadzona!\n\n");
                 }
                 break;
             }
@@ -301,7 +302,7 @@ void usuniecie_postaci(Lista **headd, char *username)
         {
             if (obecny->dane.status==UWIEZIONY) //nasz warunek
             {
-                printf("\nNie mozna usunac postaci, poniewa¿ postac %s jest uwieziona!\n",username);
+                printf("\nNie mozna usunac postaci, poniewaz postac %s jest uwieziona!\n\n",username);
                 return;
             }
             if (poprzedni == NULL)
@@ -313,13 +314,13 @@ void usuniecie_postaci(Lista **headd, char *username)
                 poprzedni->next=obecny->next; //w srodku lub na koncu
             }
             free(obecny);
-            printf("\nPostac usunieta pomyslnie!\n");
+            printf("\nPostac usunieta pomyslnie!\n\n");
             return;
         }
         poprzedni=obecny;
         obecny=obecny->next;
     }
-    printf("\nNie znaleziono postaci o podanym pseudonimie!\n");
+    printf("\nNie znaleziono postaci o podanym pseudonimie!\n\n");
 }
 
 // FUNKCJE DO WYSZUKIWANIA
@@ -362,7 +363,7 @@ void wyszukiwanie_nazwa(Lista *headd,char *nick)
 
     if (czyznaleziono==0)
     {
-        printf("Nie znaleziono postaci o takim pseudonimie!\n");
+        printf("Nie znaleziono postaci o takim pseudonimie!\n\n");
     }
 }
 
@@ -405,7 +406,7 @@ void wyszukiwanie_poziom_zagrozenia(Lista *headd, int poziom)
 
     if (czyznaleziono==0)
     {
-        printf("Brak postaci o poziomie zagrozenia %d!\n", poziom);
+        printf("Brak postaci o poziomie zagrozenia %d!\n\n", poziom);
     }
 }
 
@@ -434,7 +435,7 @@ void sortowanie_alfabetycznie(Lista **headd)
             }
         }
     }
-    printf("\nBaza posortowana alfabetycznie!\n");
+    printf("\nBaza posortowana alfabetycznie!\n\n");
 }
 
 void sortowanie_po_zagrozeniu(Lista **headd)
@@ -461,7 +462,7 @@ void sortowanie_po_zagrozeniu(Lista **headd)
         }
     }
 
-    printf("\nBaza posortowana wedlug poziomu zagrozenia!\n");
+    printf("\nBaza posortowana wedlug poziomu zagrozenia!\n\n");
 }
 void zapisz_do_pliku(Lista *headd,char *plikk)
 {

@@ -22,16 +22,17 @@ int menu()
         printf("9. Wczytaj do pliku\n");
         printf("10. Wyswietl cala baze\n");
         printf("0. Zakoncz dzialanie programu\n");
+        printf("------------\n");
         printf("WYBIERZ OPCJE:");
         if(scanf("%d",&wybor)!=1)
         {
-            printf("Nie wybrano poprawnie opcji! Sprobuj ponownie!\n\n");
+            printf("\nNie wybrano poprawnie opcji! Sprobuj ponownie!\n\n");
             while(getchar()!='\n');
             continue;
         }
         if(wybor>=0 && wybor<=10)
             break;
-        printf("Nie wybrano poprawnej opcji! Sprobuj ponownie!\n\n");
+        printf("\nNie wybrano poprawnej opcji! Sprobuj ponownie!\n\n");
     }
     return wybor;
 }
