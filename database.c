@@ -34,26 +34,26 @@ void dodawanie_postaci(Lista **headd)
                 if(rolabohatera==0)
                 {
                     printf("Wybrana rola: BOHATER\n");
-                    dodaj->dane.rola;
+                    dodaj->dane.rola=(Rola)rolabohatera;
                     while(getchar()!='\n');
                 }
                 if(rolabohatera==1)
                 {
                     printf("Wybrana rola: ZLOCZYNCA\n");
-                    dodaj->dane.rola;
+                    dodaj->dane.rola=(Rola)rolabohatera;
                     while(getchar()!='\n');
 
                 }
                 if(rolabohatera==2)
                 {
                     printf("Wybrana rola: ANTYBOHATER\n");
-                    dodaj->dane.rola;
+                    dodaj->dane.rola=(Rola)rolabohatera;
                     while(getchar()!='\n');
                 }
                 if(rolabohatera==3)
                 {
                     printf("Wybrana rola: NEUTRALNY\n");
-                    dodaj->dane.rola;
+                    dodaj->dane.rola=(Rola)rolabohatera;
                     while(getchar()!='\n');
                 }
                 break;
@@ -85,7 +85,7 @@ void dodawanie_postaci(Lista **headd)
             if(pozzag>=0 && pozzag<=10)
             {
                 printf("Wprowadzony poziom zagrozenia %d\n",pozzag);
-                dodaj->dane.poziom_zagrozenia;
+                dodaj->dane.poziom_zagrozenia=pozzag;
                 while(getchar()!='\n');
                 break;
             }
@@ -118,32 +118,32 @@ void dodawanie_postaci(Lista **headd)
                 if(statuss==0)
                 {
                     printf("Wybrany status: AKTYWNY\n");
-                    dodaj->dane.status;
+                    dodaj->dane.status=(Status)statuss;
                     while(getchar()!='\n');
                 }
                 if(statuss==1)
                 {
                     printf("Wybrany status: USPIONY\n");
-                    dodaj->dane.status;
+                    dodaj->dane.status=(Status)statuss;
                     while(getchar()!='\n');
 
                 }
                 if(statuss==2)
                 {
                     printf("Wybrany status: W MISJI\n");
-                    dodaj->dane.status;
+                    dodaj->dane.status=(Status)statuss;
                     while(getchar()!='\n');
                 }
                 if(statuss==3)
                 {
                     printf("Wybrany status: RANNY\n");
-                    dodaj->dane.status;
+                    dodaj->dane.status=(Status)statuss;
                     while(getchar()!='\n');
                 }
                 if(statuss==4)
                 {
                     printf("Wybrany status: UWIEZIONY\n");
-                    dodaj->dane.status;
+                    dodaj->dane.status=(Status)statuss;
                     while(getchar()!='\n');
                 }
                 break;
@@ -162,25 +162,14 @@ void dodawanie_postaci(Lista **headd)
 }
 void wyswietlanie_calosci(Lista *headd)
 {
-    if (headd==NULL)
+    if (headd == NULL)
     {
-        printf("\nPusta baza danych!\n");
+        printf("\nPusta baza danych!\n\n");
         return;
     }
-    char *wszystkierole[]= {"Bohater","Zloczynca","Antybohater","Neutralny" };
-    char *statusy[]= {"Aktywny","Uspiony","W misji","Ranny","Uwieziony" };
     while(headd!=NULL)
     {
-        int i=headd->dane.rola;
-        int i2=headd->dane.status;
-        printf("--------------------\n");
-        printf("Pseudonim: %s\n",headd->dane.pseudonim);
-        printf("Rola: %s\n",wszystkierole[i]);
-        printf("Moc: %s\n",headd->dane.moc);
-        printf("Poziom zagrozenia: %d\n",headd->dane.poziom_zagrozenia);
-        printf("Dzielnica dzialania: %s\n",headd->dane.dzielnica_dzialania);
-        printf("Status: %s\n",statusy[i2]);
-        printf("--------------------\n");
+        wyswietl_jedna_postac(headd->dane);
         headd=headd->next;
     }
 }
@@ -208,12 +197,11 @@ void edycja_postaci(Lista *headd, char *username)
     while(1)
     {
         printf("--- EDYCJA DANYCH: %s ---\n",wyszukaj->dane.pseudonim);
-        printf("1. Zmien Pseudonim\n");
-        printf("2. Zmien Role\n");
-        printf("3. Zmien Moc\n");
-        printf("4. Zmien Poziom Zagrozenia\n");
-        printf("5. Zmien Dzielnice\n");
-        printf("6. Zmien Status\n");
+        printf("1. Zmien Role\n");
+        printf("2. Zmien Moc\n");
+        printf("3. Zmien Poziom Zagrozenia\n");
+        printf("4. Zmien Dzielnice\n");
+        printf("5. Zmien Status\n");
         printf("0. Anuluj edytowanie\n");
         printf("Wybierz opcje: ");
 
@@ -221,7 +209,7 @@ void edycja_postaci(Lista *headd, char *username)
         int wynikk=scanf("%d", &wybor);
         if(wynikk!=1)
         {
-            printf("Podaj liczbe z zakresu od 0 do 6! Sprobuj ponownie!\n");
+            printf("Podaj liczbe z zakresu od 0 do 5! Sprobuj ponownie!\n");
             while(getchar()!='\n');
             continue;
         }
@@ -233,13 +221,6 @@ void edycja_postaci(Lista *headd, char *username)
                 break;
             }
             if(wybor==1)
-            {
-                printf("Nowy pseudonim: ");
-                scanf(" %99[^\n]",wyszukaj->dane.pseudonim);
-                printf("Edycje pseudonimu zakonczono pomyslnie!\n");
-                break;
-            }
-            if(wybor==2)
             {
                 printf("Nowa rola (0-Bohater 1-Zloczynca 2-Antybohater 3-Neutralny): ");
                 int nowa_rola;
@@ -254,14 +235,14 @@ void edycja_postaci(Lista *headd, char *username)
                 }
                 break;
             }
-            if(wybor==3)
+            if(wybor==2)
             {
                 printf("Nowa moc: ");
                 scanf(" %99[^\n]",wyszukaj->dane.moc);
                 printf("Edycje mocy zakonczono pomyslnie!\n");
                 break;
             }
-            if(wybor==4)
+            if(wybor==3)
             {
                 printf("Nowy poziom zagrozenia (0-10): ");
                 int nowy_poziom;
@@ -277,14 +258,14 @@ void edycja_postaci(Lista *headd, char *username)
                 }
                 break;
             }
-            if(wybor==5)
+            if(wybor==4)
             {
                 printf("Nowa dzielnica: ");
                 scanf(" %149[^\n]",wyszukaj->dane.dzielnica_dzialania);
                 printf("Edycje dzielnicy zakonczono pomyslnie!\n");
                 break;
             }
-            if(wybor==6)
+            if(wybor==5)
             {
                 printf("Nowy status (0-Aktywny 1-Uspiony 2-W misji 3-Ranny 4-Uwieziony): ");
                 int nowy_status;
@@ -307,7 +288,7 @@ void usuniecie_postaci(Lista **headd, char *username)
 {
     if (*headd==NULL)
     {
-        printf("\nPusta baza danych!\n");
+        printf("\nPusta baza danych!\n\n");
         return;
     }
 
@@ -343,17 +324,17 @@ void usuniecie_postaci(Lista **headd, char *username)
 
 // FUNKCJE DO WYSZUKIWANIA
 
-void wyszukiwanie_nazwa(Lista *headd, char *nick)
+void wyszukiwanie_nazwa(Lista *headd,char *nick)
 {
-    if (headd == NULL)
+    if (headd==NULL)
     {
-        printf("\nPusta baza danych!\n");
+        printf("\nPusta baza danych!\n\n");
         return;
     }
 
     printf("\n--- WYNIKI WYSZUKIWANIA DLA: '%s' ---\n",nick);
-    char *role_txt[]= {"Bohater","Zloczynca","Antybohater","Neutralny"};
-    char *status_txt[]= {"Aktywny","Uspiony","W misji","Ranny","Uwieziony"};
+    char *wszystkierole[]= {"Bohater","Zloczynca","Antybohater","Neutralny"};
+    char *statusy[]= {"Aktywny","Uspiony","W misji","Ranny","Uwieziony"};
 
     int czyznaleziono=0;
 
@@ -367,11 +348,11 @@ void wyszukiwanie_nazwa(Lista *headd, char *nick)
             printf("ZNALEZIONO!\n");
             printf("--------------------------------------------------\n");
             printf("Pseudonim: %s\n",headd->dane.pseudonim);
-            printf("Rola:      %s\n",role_txt[i]);
+            printf("Rola:      %s\n",wszystkierole[i]);
             printf("Moc:       %s\n",headd->dane.moc);
             printf("Poziom:    %d\n",headd->dane.poziom_zagrozenia);
             printf("Dzielnica: %s\n",headd->dane.dzielnica_dzialania);
-            printf("Status:    %s\n",status_txt[i2]);
+            printf("Status:    %s\n",statusy[i2]);
             printf("--------------------------------------------------\n");
 
             czyznaleziono=1;
@@ -389,14 +370,14 @@ void wyszukiwanie_poziom_zagrozenia(Lista *headd, int poziom)
 {
     if (headd==NULL)
     {
-        printf("\nPusta baza danych!\n");
+        printf("\nPusta baza danych!\n\n");
         return;
     }
 
     printf("\n--- POSTACIE Z PODANYM POZIOMEM ZAGROZENIA: %d ---\n",poziom);
 
-    char *role_txt[]= {"Bohater","Zloczynca","Antybohater","Neutralny"};
-    char *status_txt[]= {"Aktywny","Uspiony","W misji","Ranny","Uwieziony"};
+    char *wszystkierole[]= {"Bohater","Zloczynca","Antybohater","Neutralny"};
+    char *statusy[]= {"Aktywny","Uspiony","W misji","Ranny","Uwieziony"};
 
     int czyznaleziono=0;
 
@@ -410,11 +391,11 @@ void wyszukiwanie_poziom_zagrozenia(Lista *headd, int poziom)
             printf("ZNALEZIONO!\n");
             printf("--------------------------------------------------\n");
             printf("Pseudonim: %s\n",headd->dane.pseudonim);
-            printf("Rola:      %s\n",role_txt[i]);
+            printf("Rola:      %s\n",wszystkierole[i]);
             printf("Moc:       %s\n",headd->dane.moc);
             printf("Poziom:    %d\n",headd->dane.poziom_zagrozenia);
             printf("Dzielnica: %s\n",headd->dane.dzielnica_dzialania);
-            printf("Status:    %s\n",status_txt[i2]);
+            printf("Status:    %s\n",statusy[i2]);
             printf("--------------------------------------------------\n");
 
             czyznaleziono=1;
@@ -434,16 +415,16 @@ void sortowanie_alfabetycznie(Lista **headd)
 {
     if (*headd == NULL || (*headd)->next == NULL) //0 lub 1 element
     {
-        printf("\nZa malo danych do sortowania.\n");
+        printf("\nZa malo danych do sortowania.\n\n");
         return;
     }
 
     Lista *i;
     Lista *j;
 
-    for (i=*headd; i!=NULL; i=i->next)
+    for (i=*headd;i!=NULL;i=i->next)
     {
-        for (j=*headd; j->next != NULL; j = j->next)
+        for (j=*headd;j->next!=NULL;j=j->next)
         {
             if (strcmp(j->dane.pseudonim,j->next->dane.pseudonim)>0)
             {
@@ -460,7 +441,7 @@ void sortowanie_po_zagrozeniu(Lista **headd)
 {
     if (*headd==NULL || (*headd)->next==NULL)
     {
-        printf("\nZa malo danych do sortowania.\n");
+        printf("\nZa malo danych do sortowania.\n\n");
         return;
     }
 
@@ -482,12 +463,12 @@ void sortowanie_po_zagrozeniu(Lista **headd)
 
     printf("\nBaza posortowana wedlug poziomu zagrozenia!\n");
 }
-void zapisz_do_pliku(Lista *headd, char *plikk)
+void zapisz_do_pliku(Lista *headd,char *plikk)
 {
     printf("\nW budowie.\n");
 }
 
-void wczytaj_z_pliku(Lista **headd, char *plikk)
+void wczytaj_z_pliku(Lista **headd,char *plikk)
 {
     printf("\nw budowie.\n");
 }

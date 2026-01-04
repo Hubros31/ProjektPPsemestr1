@@ -52,23 +52,39 @@ void dzialanie_na_menu(Lista **opcje)
         }
         if(opcja==2)
         {
+            printf("Podaj pseudonim w ktorym edytowane beda dane: ");
+            scanf(" %99[^\n]",nazwa);
             while(getchar()!='\n');
             edycja_postaci(*opcje,nazwa);
         }
         if(opcja==3)
         {
+            printf("Podaj pseudonim do usuniecia: ");
+            scanf(" %99[^\n]",nazwa);
             while(getchar()!='\n');
             usuniecie_postaci(opcje,nazwa);
         }
         if(opcja==4)
         {
+            printf("Podaj szukany pseudonim: ");
+            scanf(" %99[^\n]",nazwa);
             while(getchar()!='\n');
             wyszukiwanie_nazwa(*opcje,nazwa);
         }
         if(opcja==5)
         {
-            while(getchar()!='\n');
-            wyszukiwanie_poziom_zagrozenia(*opcje,poz);
+            printf("Podaj szukany poziom zagrozenia (0-10): ");
+            int wynik2=scanf("%d",&poz);
+            if(wynik2!=1)
+            {
+                while(getchar()!='\n');
+                printf("Podaj liczbe z zakresu od 0 do 10!\n");
+            }
+            else
+            {
+                while(getchar()!='\n');
+                wyszukiwanie_poziom_zagrozenia(*opcje,poz);
+            }
         }
         if(opcja==6)
         {
