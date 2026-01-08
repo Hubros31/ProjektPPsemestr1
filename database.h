@@ -26,10 +26,6 @@ void wyszukiwanie_poziom_zagrozenia(Lista *headd,int poziom); //wyszukiwanie po 
 void sortowanie_alfabetycznie(Lista **headd); // wedlug nazwy bohtaera
 void sortowanie_po_zagrozeniu(Lista **headd); // wedlug poziomu zagro¿enia
 
-//operacje na plikach
-void zapisz_do_pliku(Lista *headd, char *plikk); //do pliku
-void wczytaj_z_pliku(Lista **headd, char *plikk); // z pliku
-
 //czyszczenie
 void wyczysc_pamiec(Lista **headd);
 #endif

@@ -464,17 +464,15 @@ void sortowanie_po_zagrozeniu(Lista **headd)
 
     printf("\nBaza posortowana wedlug poziomu zagrozenia!\n\n");
 }
-void zapisz_do_pliku(Lista *headd,char *plikk)
-{
-    printf("\nW budowie.\n");
-}
-
-void wczytaj_z_pliku(Lista **headd,char *plikk)
-{
-    printf("\nw budowie.\n");
-}
-
 void wyczysc_pamiec(Lista **headd)
 {
-    printf("\nw budowie\n");
+    Lista *obecny=*headd;
+    Lista *nastepny;
+    while (obecny!=NULL)
+    {
+        nastepny=obecny->next;
+        free(obecny);
+        obecny=nastepny;
+    }
+    *headd=NULL;
 }

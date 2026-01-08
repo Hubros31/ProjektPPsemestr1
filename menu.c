@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "database.h"
+#include "fileio.h"
 
 
 int menu()
@@ -18,8 +19,8 @@ int menu()
         printf("5. Wyszukaj po poziomie zagrozenia\n");
         printf("6. Posortuj dane alfabetycznie wedlug nazwy postaci\n");
         printf("7. Posortuj dane rosnaco wedlug poziomu zagrozenia postaci (od najmniejszego poziomu do najwiekszego)\n");
-        printf("8. Wczytaj z pliku\n");
-        printf("9. Wczytaj do pliku\n");
+        printf("8. Zapisz do pliku\n");
+        printf("9. Wczytaj z pliku\n");
         printf("10. Wyswietl cala baze\n");
         printf("0. Zakoncz dzialanie programu\n");
         printf("------------\n");
