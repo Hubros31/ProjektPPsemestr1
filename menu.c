@@ -52,6 +52,7 @@ void dzialanie_na_menu(Lista **opcje)
             while(getchar()!='\n');
             dodawanie_postaci(opcje);
         }
+        else
         if(opcja==2)
         {
             printf("Podaj pseudonim w ktorym edytowane beda dane: ");
@@ -59,6 +60,7 @@ void dzialanie_na_menu(Lista **opcje)
             while(getchar()!='\n');
             edycja_postaci(*opcje,nazwa);
         }
+        else
         if(opcja==3)
         {
             printf("Podaj pseudonim do usuniecia: ");
@@ -66,6 +68,7 @@ void dzialanie_na_menu(Lista **opcje)
             while(getchar()!='\n');
             usuniecie_postaci(opcje,nazwa);
         }
+        else
         if(opcja==4)
         {
             printf("Podaj szukany pseudonim: ");
@@ -73,6 +76,7 @@ void dzialanie_na_menu(Lista **opcje)
             while(getchar()!='\n');
             wyszukiwanie_nazwa(*opcje,nazwa);
         }
+        else
         if(opcja==5)
         {
             printf("Podaj szukany poziom zagrozenia (0-10): ");
@@ -88,35 +92,41 @@ void dzialanie_na_menu(Lista **opcje)
                 wyszukiwanie_poziom_zagrozenia(*opcje,poz);
             }
         }
+        else
         if(opcja==6)
         {
             while(getchar()!='\n');
             sortowanie_alfabetycznie(opcje);
         }
+        else
         if(opcja==7)
         {
             while(getchar()!='\n');
             sortowanie_po_zagrozeniu(opcje);
         }
+        else
         if(opcja==8)
         {
             while(getchar()!='\n');
             printf("Podaj nazwe pliku: ");
-            scanf("%99s", plikk);
+            scanf(" %99[^\n]", plikk);
             zapisz_do_pliku(*opcje,plikk);
         }
+        else
         if(opcja==9)
         {
             while(getchar()!='\n');
             printf("Podaj nazwe pliku: ");
-            scanf("%99s", plikk);
+            scanf(" %99[^\n]", plikk);
             wczytaj_z_pliku(opcje,plikk);
         }
+        else
         if(opcja==10)
         {
             while(getchar()!='\n');
             wyswietlanie_calosci(*opcje);
         }
+        else
         if(opcja==0)
         {
             while(getchar()!='\n');
